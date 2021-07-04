@@ -191,3 +191,19 @@ void sortedDATACSVOut(int data[DATANUM]) {
         fclose(fp);
     }
 }
+void resultCSVOut(Result result[],int num) {
+    FILE* fp;
+    errno_t error;
+    char filename[BUFFSIZE];
+    sprintf_s(filename, "resultData.csv");
+    error = fopen_s(&fp, filename, "w");
+    if (error != 0)
+        fprintf_s(stderr, "failed to open");
+    else {
+        fprintf(fp, "ƒAƒ‹ƒSƒŠƒYƒ€,ŽžŠÔ\n");
+        for (int i = 0; i < num; i++) {
+            fprintf(fp, "%s,%lf\n",result[i].name, result[i].time);
+        }
+        fclose(fp);
+    }
+}

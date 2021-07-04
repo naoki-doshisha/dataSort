@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Setting.h"
-#define DATANUM 1000
+#define DATANUM 10000
 
 struct Result {
 	char name[CHARBUFF];
@@ -15,5 +15,7 @@ void bubbleSort(int data[DATANUM]);
 void selectionSort(int data[DATANUM]);
 void insertionSort(int data[DATANUM]);
 void shellSort(int data[DATANUM]);
+void quickSort(int data[DATANUM], int l, int r);
 void mergeSort(int data[DATANUM], int l, int r);
 void sortedDATACSVOut(int data[DATANUM]);
+void resultCSVOut(Result result[], int num);
