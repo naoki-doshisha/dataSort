@@ -22,71 +22,66 @@ int main()
 	}
 	dataInput(returnValue, data);
 
-
-	int algo = 0;
+	/*シミュレーション*/
 	int index = 0;
+	int flag = 0;
 	char type[6][CHARBUFF] = { "バブルソート","選択ソート","挿入ソート","シェルソート","クイックソート","マージソート" };
-	printf("アルゴリズムを選択してください（aとｄでアルゴリズム変更。ｓで決定。ｑでシミュレーション終了。）\n");
+	printf("アルゴリズムを選択してください（ｑでシミュレーション終了。）\n");
+	int rdata[DATANUM];
+	for (int i = 0;i < 6;i++) {
+		printf("%s->%d\n", type[i], i);
+	}
 	while (1) {
-		int cdata[DATANUM];
+		int cdata[DATANUM];//シミュレーション用のデータ
 		memcpy(cdata, data, sizeof(data));//配列をコピー(引数の最後はsizeofでないとうまくコピーできない）
-		printf("\r%s", type[algo]);
 		int key = getchar();
 		if (key == 'q') break;
-		switch (key) {
-		case 'a':
-			if (algo > 0) {
-				algo--;
-			}
-			else {
-				algo = 5;
-			}
-			break;
-		case 'd':
-			if (algo < 5) {
-				algo++;
-			}
-			else {
-				algo = 0;
-			}
-			break;
-
-		}
-		if (key == 's') {
+		else {
 			clock_t startTime = clock();
-			switch (algo)
+			switch (key)
 			{
-			case 0:
+			case '0':
 				bubbleSort(cdata);
+				flag = 1;
 				break;
-			case 1:
+			case '1':
 				selectionSort(cdata);
+				flag = 1;
 				break;
-			case 2:
+			case '2':
 				insertionSort(cdata);
+				flag = 1;
 				break;
-			case 3:
+			case '3':
 				shellSort(cdata);
+				flag = 1;
 				break;
-			case 4:
+			case '4':
 				quickSort(cdata, 0, DATANUM - 1);
+				flag = 1;
 				break;
-			case 5:
+			case '5':
 				mergeSort(cdata, 0, DATANUM - 1);
+				flag = 1;
 				break;
 			default:
 				break;
 			}
 			clock_t endTime = clock();
-			double time = endTime - startTime;
-			strcpy_s(result[index].name, type[algo]);//文字列をコピー
-			result[index].time = time;
-			index++;
-			printf("%lf\n", time);
+			if (flag == 1) {
+				double time = endTime - startTime;
+				int key2 = (unsigned char)key-48;//keyを数値に変換
+				strcpy_s(result[index].name, type[key2]);//文字列をコピー
+				result[index].time = time;
+				index++;
+				printf("%lf\n", time);//処理時間を表示
+				memcpy(rdata, cdata, sizeof(cdata));
+				flag = 0;
+			}
 		}
 	}
-	resultCSVOut(result, index);
-
+	resultCSVOut(result, index);//結果を出力
+	sortedDATACSVOut(rdata);//ソートされたデータを出力
 }
 
 
