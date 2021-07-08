@@ -3,9 +3,9 @@
 #include "Setting.h"
 #define DATANUM 10000
 
-struct Result {
-	char name[CHARBUFF];
-	double time;
+struct Result {//ˆ—Œ‹‰Ê‚ğŠi”[‚·‚é\‘¢‘Ì
+	char name[CHARBUFF];//ƒAƒ‹ƒSƒŠƒYƒ€–¼
+	double time;//ˆ—ŠÔ
 
 };
 
@@ -17,5 +17,6 @@ void insertionSort(int data[DATANUM]);
 void shellSort(int data[DATANUM]);
 void quickSort(int data[DATANUM], int l, int r);
 void mergeSort(int data[DATANUM], int l, int r);
+
 void sortedDATACSVOut(int data[DATANUM]);
 void resultCSVOut(Result result[], int num);

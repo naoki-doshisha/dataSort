@@ -2,6 +2,7 @@
 #include "Setting.h"
 #include "sortUtils.h"
 
+/*CSVデータを配列に格納する関数*/
 void dataInput(char fileName[CHARBUFF], int data[DATANUM]) {
     FILE* fp;
     char s[BUFFSIZE];
@@ -121,23 +122,21 @@ void quickSort(int data[DATANUM], int l, int r) {
 void merge(int data[DATANUM], int l, int m, int r) {
     int i, j, k;
 
-    int n1 = m - l + 1;  // number of elements in first subarray
-    int n2 = r - m;      // number of elements in second subarray
+    int n1 = m - l + 1;
+    int n2 = r - m;
 
-    // create temporary subarrays
-    int L[DATANUM];  // array[l..m]
-    int R[DATANUM];  // array[m+1..r]
 
-    // copy data to subarrays L and R 
+    int L[DATANUM];
+    int R[DATANUM];
+
     for (i = 0; i < n1; i++)
         L[i] = data[l + i];
     for (j = 0; j < n2; j++)
         R[j] =data[m + 1 + j];
 
-    // merge the two arrays
-    i = 0;    // index of L
-    j = 0;    // index of R
-    k = l;    // index of merged array
+    i = 0;
+    j = 0;
+    k = l;
 
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
@@ -166,7 +165,6 @@ void merge(int data[DATANUM], int l, int m, int r) {
 void mergeSort(int data[DATANUM], int l, int r) {
 
     if (l < r) {
-        // avoids overflow for large l and h
         int m = l + (r - l) / 2;
 
         mergeSort(data, l, m);
@@ -175,6 +173,7 @@ void mergeSort(int data[DATANUM], int l, int r) {
     }
 
 }
+/*整列後のデータをCSV出力する関数*/
 void sortedDATACSVOut(int data[DATANUM]) {
     FILE* fp;
     errno_t error;
@@ -191,6 +190,7 @@ void sortedDATACSVOut(int data[DATANUM]) {
         fclose(fp);
     }
 }
+/*アルゴリズムと処理時間をCSV出力する関数*/
 void resultCSVOut(Result result[],int num) {
     FILE* fp;
     errno_t error;
