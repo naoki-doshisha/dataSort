@@ -10,13 +10,14 @@
 
 int main()
 {
-	char directory[CHARBUFF];
-	char returnValue[CHARBUFF];
+	char directory[CHARBUFF];//ディレクトリ
+	char returnValue[CHARBUFF];//ファイル名を格納する配列
 
-	int data[DATANUM] = {};
-	Result result[MAXSIZE];
+	int data[DATANUM] = {};//データを格納する配列
+	Result result[MAXSIZE];//結果を格納する構造体
 
-	getCurrentDirectory(directory);
+	//iniファイルからファイル名を取得
+	getCurrentDirectory(directory);//ディレクトリを取得
 	if (readChar("data", "data2", "none", returnValue, directory)) {
 		printf("%s\n", returnValue);
 	}
